@@ -31,7 +31,7 @@ export default function StartUpPage() {
 
   //Get Data from Backend MongoDB
   useEffect(() => {
-    axios.get('http://localhost:3001/GetSites')
+    axios.get('https://vv-development-web-page-server.vercel.app/GetSites')
       .then(result => setAllSite(result.data))
       .catch(error => console.log(error))
   }, []);
