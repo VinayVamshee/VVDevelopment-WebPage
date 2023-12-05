@@ -91,7 +91,7 @@ export default function AdministratorPage() {
   const PostToBackend = async (e) => {
 
     try {
-      await axios.post("http://localhost:3001/Sites", { ...Site })
+      await axios.post("https://vv-development-web-page-server.vercel.app/Sites", { ...Site })
         .then(result => console.log(result))
         .catch(error => console.log(error))
     } catch (error) {
@@ -106,14 +106,14 @@ export default function AdministratorPage() {
 
   //Get Data from Backend MongoDB
   useEffect(() => {
-    axios.get('http://localhost:3001/GetSites')
+    axios.get('https://vv-development-web-page-server.vercel.app/GetSites')
       .then(result => setAllSite(result.data))
       .catch(error => console.log(error))
   }, []);
 
   //Delete Data from Backend MongoDB
   const DeleteSite = async (id) => {
-    axios.delete('http://localhost:3001/DeleteSite/' + id)
+    axios.delete('https://vv-development-web-page-server.vercel.app/DeleteSite/' + id)
       .then(result => {
         console.log(result)
         window.location.reload();
