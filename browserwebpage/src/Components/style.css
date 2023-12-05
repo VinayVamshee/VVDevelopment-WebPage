@@ -1,0 +1,381 @@
+.light-theme {
+  --text-color: black;
+  --background-color: white;
+  --text-color-hover: white;
+  --BG-image: url("./Images/BackgroundLight.webp");
+}
+
+.dark-theme {
+  --text-color: white;
+  --text-color-hover: white;
+  --background-color: #333;
+  --BG-image: url("./Images/BackgroundDark.jpeg");
+}
+
+.App {
+  background-image: var(--BG-image);
+  background-size: cover;
+}
+
+.NavBar {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.Navigation {
+  display: flex;
+  gap: 10px;
+  padding: 5px;
+  width: 100%;
+}
+
+.LogIn {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px;
+}
+
+.StartUpPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  height:80rem;
+}
+
+.Logo {
+  height: 220px;
+  width: 600px;
+  padding: 10px;
+}
+
+.Logo img {
+  width: 100%;
+  height: 100%;
+  animation: SlideBottom 1s forwards;
+}
+
+.Search {
+  margin: 15px;
+  padding: 10px;
+}
+
+.Search input {
+  padding: 5px;
+  width: 500px;
+  font-family: monospace;
+  animation: SlideRight 1s forwards;
+}
+
+.Search button {
+  color: black;
+}
+
+.Search button:hover {
+  color: white;
+  background-color: black;
+}
+
+.Bookmarks {
+  padding: 10px;
+  display: flex;
+  flex: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  width: 600px;
+  animation: SlideTop 1s forwards;
+}
+
+.StartUpPage h3 {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: var(--text-color);
+}
+
+.Categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  gap: 30px;
+  width: 700px;
+  animation: SlideTop 1s forwards;
+  color: var(--text-color);
+}
+
+.modal-content {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.Categories button {
+  color: var(--text-color);
+  border: 1px solid rgb(109, 106, 106);
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  transition: 500ms ease-in-out;
+}
+
+.Categories button:hover {
+  transform: scale(1.5);
+  border: 2px solid rgb(109, 106, 106);
+  transition: 500ms ease-in-out;
+}
+
+.Site {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Site img {
+  height: 30px;
+  filter: drop-shadow(10px 10px 30px rgb(127, 126, 126));
+  transition: 1s ease-in-out;
+}
+
+.Site a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  font-size: 18px;
+  text-decoration: none;
+  color: var(--text-color);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.Site p:hover {
+  font-weight: bold;
+}
+
+.Site img:hover {
+  transform: scale(1.5);
+  transition: 500ms ease-in-out;
+}
+
+.Site button {
+  position: relative;
+  bottom: 30px;
+  right: 15px;
+  border: none;
+  transition: 0.5s ease-in-out;
+  color: var(--text-color);
+}
+
+.Site button:hover {
+  color: red;
+  transition: 0.5s ease-in-out;
+}
+
+.Add {
+  margin: 2px;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.Add:hover {
+  color: var(--text-color-hover);
+}
+
+.Add-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--text-color);
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+}
+
+.Add-icon:hover {
+  color: var(--text-color-hover);
+  background-color: black;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 5px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.Footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.modal-content-Admin {
+  background-color: white;
+  border-radius: 5px;
+}
+
+.modal-body-Admin {
+  display: flex;
+  padding-left: 10px;
+  align-items: center;
+  gap: 5px;
+}
+
+.modal-body-Admin img {
+  height: 400px;
+}
+
+.details .detailhead {
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bolder;
+}
+
+.details {
+  font-family:'Times New Roman', Times, serif;
+  font-size: 15px;
+}
+
+.About {
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section1 {
+  padding: 10px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+.Aboutcard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5px;
+}
+
+.Aboutcontainer {
+  padding: 5px;
+}
+.section2{
+  padding: 30px;
+  font-size: 15px;
+  font-family: monospace;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section2 h5{
+  font-size: 25px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.carddescription {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  padding: 50px;
+  font-size: 18px;
+  animation: SlideTop 1s forwards;
+}
+
+.Abouttitle {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 25px;
+  padding-left: 25px;
+}
+
+@keyframes SlideRight {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes SlideLeft {
+  0% {
+    transform: translateX(40%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes SlideTop {
+  0% {
+    transform: translateY(200%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes SlideBottom {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .Categories{
+    width: 300px;
+  }
+  .Search input{
+    width: 300px;
+  }
+  .Logo{
+    width: 300px;
+  }
+  .Bookmarks{
+    width: 300px;
+  }
+  .NavBar{
+    padding: 2px;
+    gap: 2px;
+  }
+  .Navigation{
+    padding: 1px;
+    gap: 1px;
+  }
+  .Categories button{
+    height: 70px;
+    width: 70px;
+    font-size: small;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .Site img{
+    height: 20px;
+  }
+  .Site p{
+    font-size: 16px;
+  }
+}
