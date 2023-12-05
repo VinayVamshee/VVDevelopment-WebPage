@@ -29,7 +29,7 @@ export default function NavBar() {
     const AddAdmin = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3001/Register', { username, password })
+            await axios.post('https://vv-development-web-page-server.vercel.app/Register', { username, password })
                 .then(result => console.log(result))
                 .catch(error => console.log(error))
             alert('User Registration Successful')
@@ -40,7 +40,7 @@ export default function NavBar() {
 
     const CheckAdmin = async (e) => {
         e.preventDefault();
-        axios.post('http://localhost:3001/Login', { username, password })
+        axios.post('https://vv-development-web-page-server.vercel.app/Login', { username, password })
             .then(result => {
                 if (result.data === 'Login Successful') {
                     alert('Login Successful')
