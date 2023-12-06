@@ -84,7 +84,7 @@ export default function StartUpPage() {
           DefaultSite.map((Element, idx) => {
             return (
               <div className='Site ' key={idx}>
-                <a href={Element.SiteUrl}>
+                <a href={Element.SiteUrl} target"_blank">
                   <img src={Element.SiteLogo} alt='...' />
                   <p>{Element.SiteName}</p>
                 </a>
@@ -97,7 +97,7 @@ export default function StartUpPage() {
           AllSite.map((Element, idx) => {
             return (
               <div className='Site' key={idx}>
-                <a href={Element.SiteUrl}>
+                <a href={Element.SiteUrl} target"_blank">
                   <img src={Element.SiteLogo} alt='...' />
                   <p>{Element.SiteName}</p>
                 </a>
@@ -121,7 +121,7 @@ export default function StartUpPage() {
                   DefaultSite.filter(f => f.SiteCategory.includes('MultiMedia')).map((Element, idx) => {
                     return (
                       <div className='Site col-2' key={idx}>
-                        <a href={Element.SiteUrl}>
+                        <a href={Element.SiteUrl} target"_blank">
                           <img src={Element.SiteLogo} alt='...' />
                           <p>{Element.SiteName}</p>
                         </a>
@@ -133,7 +133,7 @@ export default function StartUpPage() {
                   AllSite.filter(f => f.SiteCategory.includes('MultiMedia')).map((Element, idx) => {
                     return (
                       <div className='Site col-2' key={idx}>
-                        <a href={Element.SiteUrl}>
+                        <a href={Element.SiteUrl} target"_blank">
                           <img src={Element.SiteLogo} alt='...' />
                           <p>{Element.SiteName}</p>
                         </a>
@@ -164,7 +164,7 @@ export default function StartUpPage() {
                   DefaultSite.filter(f => f.SiteCategory.includes('General')).map((Element, idx) => {
                     return (
                       <div className='Site col-2' key={idx}>
-                        <a href={Element.SiteUrl}>
+                        <a href={Element.SiteUrl} target"_blank">
                           <img src={Element.SiteLogo} alt='...' />
                           <p>{Element.SiteName}</p>
                         </a>
@@ -176,7 +176,7 @@ export default function StartUpPage() {
                   AllSite.filter(f => f.SiteCategory.includes('General')).map((Element, idx) => {
                     return (
                       <div className='Site col-2' key={idx}>
-                        <a href={Element.SiteUrl}>
+                        <a href={Element.SiteUrl} target"_blank">
                           <img src={Element.SiteLogo} alt='...' />
                           <p>{Element.SiteName}</p>
                         </a>
@@ -206,7 +206,7 @@ export default function StartUpPage() {
                   DefaultSite.filter(f => f.SiteCategory.includes('Railway')).map((Element, idx) => {
                     return (
                       <div className='Site col-2' key={idx}>
-                        <a href={Element.SiteUrl}>
+                        <a href={Element.SiteUrl} target"_blank">
                           <img src={Element.SiteLogo} alt='...' />
                           <p>{Element.SiteName}</p>
                         </a>
@@ -218,7 +218,7 @@ export default function StartUpPage() {
                   AllSite.filter(f => f.SiteCategory.includes('Railway')).map((Element, idx) => {
                     return (
                       <div className='Site col-2' key={idx}>
-                        <a href={Element.SiteUrl}>
+                        <a href={Element.SiteUrl} target"_blank">
                           <img src={Element.SiteLogo} alt='...' />
                           <p>{Element.SiteName}</p>
                         </a>
@@ -248,7 +248,7 @@ export default function StartUpPage() {
                   DefaultSite.filter(f => f.SiteCategory.includes('Bank')).map((Element, idx) => {
                     return (
                       <div className='Site col-2' key={idx}>
-                        <a href={Element.SiteUrl}>
+                        <a href={Element.SiteUrl} target"_blank">
                           <img src={Element.SiteLogo} alt='...' />
                           <p>{Element.SiteName}</p>
                         </a>
@@ -260,7 +260,7 @@ export default function StartUpPage() {
                   AllSite.filter(f => f.SiteCategory.includes('Bank')).map((Element, idx) => {
                     return (
                       <div className='Site col-2' key={idx}>
-                        <a href={Element.SiteUrl}>
+                        <a href={Element.SiteUrl} target"_blank">
                           <img src={Element.SiteLogo} alt='...' />
                           <p>{Element.SiteName}</p>
                         </a>
@@ -290,7 +290,7 @@ export default function StartUpPage() {
                   DefaultSite.filter(f => f.SiteCategory.includes('Other')).map((Element, idx) => {
                     return (
                       <div className='Site col-2 ' key={idx}>
-                        <a href={Element.SiteUrl}>
+                        <a href={Element.SiteUrl} target"_blank">
                           <img src={Element.SiteLogo} alt='...' />
                           <p>{Element.SiteName}</p>
                         </a>
@@ -302,7 +302,7 @@ export default function StartUpPage() {
                   AllSite.filter(f => f.SiteCategory.includes('Other')).map((Element, idx) => {
                     return (
                       <div className='Site col-2' key={idx}>
-                        <a href={Element.SiteUrl}>
+                        <a href={Element.SiteUrl} target"_blank">
                           <img src={Element.SiteLogo} alt='...' />
                           <p>{Element.SiteName}</p>
                         </a>
