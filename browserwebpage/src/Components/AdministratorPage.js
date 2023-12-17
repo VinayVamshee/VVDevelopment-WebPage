@@ -89,16 +89,18 @@ export default function AdministratorPage() {
 
   // Post Data to Backend MongoDb
   const PostToBackend = async (e) => {
-
+    e.preventDefault();
     try {
       await axios.post("https://vv-development-web-page-server.vercel.app/Sites", { ...Site })
-        .then(result => console.log(result))
+        .then(result => {
+          console.log(result)
+            alert('Added')
+              window.location.reload();
+        })
         .catch(error => console.log(error))
     } catch (error) {
       console.log(error + 'not added');
     }
-
-    alert("Added");
   }
 
   //Output Data
