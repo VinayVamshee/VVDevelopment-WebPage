@@ -5,6 +5,7 @@ const cors = require('cors');
 const SiteSchema = require('./models/Sites');
 const UserSchema = require('./models/Users')
 const connectDB = require('./db/connect')
+const CategorySchmea = require('./models/Category')
 
 const app = express();
 app.use(cors());
@@ -28,6 +29,25 @@ app.get('/GetSites', (req, res) => {
 app.delete('/DeleteSite/:id', (req, res) => {
     const id = req.params.id;
     SiteSchema.findByIdAndDelete({ _id: id })
+        .then(sites => res.json(sites))
+        .catch(error => res.json(error))
+})
+
+app.post("/AddNewCategory", (req, res) => {
+    CategorySchmea.create(req.body)
+        .then(sites => res.json(sites))
+        .catch(error => res.json(error))
+});
+
+app.get('/GetCategory', (req, res) => {
+    CategorySchmea.find({})
+        .then(sites => res.json(sites))
+        .catch(error => res.json(error))
+});
+
+app.delete('/DeleteCategory/:id', (req, res) => {
+    const id = req.params.id;
+    CategorySchmea.findByIdAndDelete({ _id: id })
         .then(sites => res.json(sites))
         .catch(error => res.json(error))
 })
