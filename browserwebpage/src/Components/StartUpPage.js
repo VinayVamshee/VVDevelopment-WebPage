@@ -26,6 +26,25 @@ export default function StartUpPage() {
     },
   ]
 
+  const [AllCategory, setAllCategory] = useState([]);
+
+  useEffect(() => {
+    axios.get('https://vv-development-web-page-server.vercel.app/GetCategory')
+      .then(result => setAllCategory(result.data))
+      .catch(error => console.log(error))
+  }, []);
+
+  const [SelectedCategory, setSelectedCategory] = useState({});
+
+  const OpenCategory = (category) => {
+    setSelectedCategory(category);
+  }
+
+  const CloseCategory = (e) => {
+    e.preventDefault();
+    setSelectedCategory({});
+  }
+
   //Output Data
   const [AllSite, setAllSite] = useState([]);
 
@@ -61,7 +80,7 @@ export default function StartUpPage() {
       <h3>Categories</h3>
 
       <div className='Categories'>
-        <button type="button" className="btn" data-bs-toggle="modal" data-bs-target="#GeneralModal">
+        {/* <button type="button" className="btn" data-bs-toggle="modal" data-bs-target="#GeneralModal">
           General
         </button>
         <button type="button" className="btn" data-bs-toggle="modal" data-bs-target="#RailwayModal">
@@ -75,29 +94,61 @@ export default function StartUpPage() {
         </button>
         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#OtherModal">
           Other
-        </button>
+        </button> */}
+        {
+          AllCategory.map((category, idx) => (
+            <button
+              key={idx}
+              type="button"
+              className="btn "
+              onClick={() => OpenCategory(category)}
+              data-bs-toggle="modal"
+              data-bs-target="#SelectedCategoriesModal"
+            >
+              {category.Category}
+            </button>
+          ))
+        }
       </div>
 
+
+
+
+      {SelectedCategory && (
+        <div className="modal fade" id="SelectedCategoriesModal" tabIndex="-1" aria-labelledby="SelectedCategoriesModalLabel" aria-hidden="true">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5" id="SelectedCategoriesModalLabel">{SelectedCategory.Category}</h1>
+                <button type="button" onClick={CloseCategory} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body row">
+                {AllSite
+                  .filter(site => site.SiteCategory === SelectedCategory.Category)
+                  .map((Element, idx) => (
+                    <div className="Site col-2" key={idx}>
+                      <a href={Element.SiteUrl}>
+                        <img src={Element.SiteLogo} alt='...' />
+                        {Element.SiteName}
+                      </a>
+                    </div>
+                  ))}
+              </div>
+              <div className="modal-footer">
+                <button type="button" onClick={CloseCategory} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       <h3 className='mt-5'>All Sites</h3>
       <div className='Bookmarks'>
-        {
-          DefaultSite.map((Element, idx) => {
-            return (
-              <div className='Site ' key={idx}>
-                <a href={Element.SiteUrl} target = "_blank">
-                  <img src={Element.SiteLogo} alt='...' />
-                  <p>{Element.SiteName}</p>
-                </a>
-              </div>
-            )
-          })
-        }
         {/* Monog DB - Backend  */}
         {
           AllSite.map((Element, idx) => {
             return (
               <div className='Site' key={idx}>
-                <a href={Element.SiteUrl} target = "_blank">
+                <a href={Element.SiteUrl}>
                   <img src={Element.SiteLogo} alt='...' />
                   <p>{Element.SiteName}</p>
                 </a>
@@ -121,7 +172,7 @@ export default function StartUpPage() {
                   DefaultSite.filter(f => f.SiteCategory.includes('MultiMedia')).map((Element, idx) => {
                     return (
                       <div className='Site col-2' key={idx}>
-                        <a href={Element.SiteUrl} target = "_blank">
+                        <a href={Element.SiteUrl}>
                           <img src={Element.SiteLogo} alt='...' />
                           <p>{Element.SiteName}</p>
                         </a>
@@ -133,7 +184,7 @@ export default function StartUpPage() {
                   AllSite.filter(f => f.SiteCategory.includes('MultiMedia')).map((Element, idx) => {
                     return (
                       <div className='Site col-2' key={idx}>
-                        <a href={Element.SiteUrl} target = "_blank">
+                        <a href={Element.SiteUrl}>
                           <img src={Element.SiteLogo} alt='...' />
                           <p>{Element.SiteName}</p>
                         </a>
@@ -164,7 +215,7 @@ export default function StartUpPage() {
                   DefaultSite.filter(f => f.SiteCategory.includes('General')).map((Element, idx) => {
                     return (
                       <div className='Site col-2' key={idx}>
-                        <a href={Element.SiteUrl} target = "_blank">
+                        <a href={Element.SiteUrl}>
                           <img src={Element.SiteLogo} alt='...' />
                           <p>{Element.SiteName}</p>
                         </a>
@@ -176,7 +227,7 @@ export default function StartUpPage() {
                   AllSite.filter(f => f.SiteCategory.includes('General')).map((Element, idx) => {
                     return (
                       <div className='Site col-2' key={idx}>
-                        <a href={Element.SiteUrl} target = "_blank">
+                        <a href={Element.SiteUrl}>
                           <img src={Element.SiteLogo} alt='...' />
                           <p>{Element.SiteName}</p>
                         </a>
@@ -206,7 +257,7 @@ export default function StartUpPage() {
                   DefaultSite.filter(f => f.SiteCategory.includes('Railway')).map((Element, idx) => {
                     return (
                       <div className='Site col-2' key={idx}>
-                        <a href={Element.SiteUrl} target = "_blank">
+                        <a href={Element.SiteUrl}>
                           <img src={Element.SiteLogo} alt='...' />
                           <p>{Element.SiteName}</p>
                         </a>
@@ -218,7 +269,7 @@ export default function StartUpPage() {
                   AllSite.filter(f => f.SiteCategory.includes('Railway')).map((Element, idx) => {
                     return (
                       <div className='Site col-2' key={idx}>
-                        <a href={Element.SiteUrl} target = "_blank">
+                        <a href={Element.SiteUrl}>
                           <img src={Element.SiteLogo} alt='...' />
                           <p>{Element.SiteName}</p>
                         </a>
@@ -248,7 +299,7 @@ export default function StartUpPage() {
                   DefaultSite.filter(f => f.SiteCategory.includes('Bank')).map((Element, idx) => {
                     return (
                       <div className='Site col-2' key={idx}>
-                        <a href={Element.SiteUrl} target = "_blank">
+                        <a href={Element.SiteUrl}>
                           <img src={Element.SiteLogo} alt='...' />
                           <p>{Element.SiteName}</p>
                         </a>
@@ -260,7 +311,7 @@ export default function StartUpPage() {
                   AllSite.filter(f => f.SiteCategory.includes('Bank')).map((Element, idx) => {
                     return (
                       <div className='Site col-2' key={idx}>
-                        <a href={Element.SiteUrl} target = "_blank">
+                        <a href={Element.SiteUrl}>
                           <img src={Element.SiteLogo} alt='...' />
                           <p>{Element.SiteName}</p>
                         </a>
@@ -290,7 +341,7 @@ export default function StartUpPage() {
                   DefaultSite.filter(f => f.SiteCategory.includes('Other')).map((Element, idx) => {
                     return (
                       <div className='Site col-2 ' key={idx}>
-                        <a href={Element.SiteUrl} target = "_blank">
+                        <a href={Element.SiteUrl}>
                           <img src={Element.SiteLogo} alt='...' />
                           <p>{Element.SiteName}</p>
                         </a>
@@ -302,7 +353,7 @@ export default function StartUpPage() {
                   AllSite.filter(f => f.SiteCategory.includes('Other')).map((Element, idx) => {
                     return (
                       <div className='Site col-2' key={idx}>
-                        <a href={Element.SiteUrl} target = "_blank">
+                        <a href={Element.SiteUrl}>
                           <img src={Element.SiteLogo} alt='...' />
                           <p>{Element.SiteName}</p>
                         </a>
