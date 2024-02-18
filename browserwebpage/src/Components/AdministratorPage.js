@@ -87,20 +87,56 @@ export default function AdministratorPage() {
     SiteCategory: ' '
   });
 
-  // Post Data to Backend MongoDb
-  const PostToBackend = async (e) => {
+  const [ Category, setCategory] = useState({
+    Category:' '
+  })
+
+  const AddNewCategory = async (e) => {
     e.preventDefault();
     try {
+        await axios.post("https://vv-development-web-page-server.vercel.app/AddNewCategory", { ...Category })
+            .then(result => {
+                console.log(result);
+                alert("Added");
+                window.location.reload();
+            })
+            .catch(error => console.log(error))
+    } catch (error) {
+        console.log(error + 'not added');
+    }
+}
+
+const [AllCategory, setAllCategory] = useState([]);
+
+    useEffect(() => {
+        axios.get('https://vv-development-web-page-server.vercel.app/GetCategory')
+            .then(result => setAllCategory(result.data))
+            .catch(error => console.log(error))
+    }, []);
+
+    const [SelectedCategory, setSelectedCategory] = useState({});
+
+    const OpenCategory = (category) => {
+      setSelectedCategory(category);
+    }
+
+    const CloseCategory = (e) => {
+        e.preventDefault();
+        setSelectedCategory({});
+    }
+
+  // Post Data to Backend MongoDb
+  const PostToBackend = async (e) => {
+
+    try {
       await axios.post("https://vv-development-web-page-server.vercel.app/Sites", { ...Site })
-        .then(result => {
-          console.log(result)
-            alert('Added')
-              window.location.reload();
-        })
+        .then(result => console.log(result))
         .catch(error => console.log(error))
     } catch (error) {
       console.log(error + 'not added');
     }
+
+    alert("Added");
   }
 
   //Output Data
@@ -141,7 +177,7 @@ export default function AdministratorPage() {
 
       <h3>Categories</h3>
       <div className='Categories'>
-        <button type="button" className="btn col-2" data-bs-toggle="modal" data-bs-target="#GeneralModal">
+        {/* <button type="button" className="btn col-2" data-bs-toggle="modal" data-bs-target="#GeneralModal">
           General
         </button>
         <button type="button" className="btn col-2" data-bs-toggle="modal" data-bs-target="#RailwayModal">
@@ -155,24 +191,58 @@ export default function AdministratorPage() {
         </button>
         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#OtherModal">
           Other
-        </button>
+        </button> */}
+          {
+  AllCategory.map((category, idx) => (
+    <button
+      key={idx}
+      type="button"
+      className="btn"
+      onClick={() => OpenCategory(category)}
+      data-bs-toggle="modal"
+      data-bs-target="#SelectedCategoriesModal"
+    >
+      {category.Category}
+    </button>
+  ))
+}
       </div>
 
-      <h3 className='mt-5'>All Sites</h3>
-      <div className='Bookmarks row'>
-        {
-          DefaultSite.map((Element, idx) => {
-            return (
-              <div className='Site col-2' key={idx}>
+   
+
+{SelectedCategory && (
+  <div className="modal fade" id="SelectedCategoriesModal" tabIndex="-1" aria-labelledby="SelectedCategoriesModalLabel" aria-hidden="true">
+    <div className="modal-dialog">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h1 className="modal-title fs-5" id="SelectedCategoriesModalLabel">{SelectedCategory.Category}</h1>
+          <button type="button" onClick={CloseCategory} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div className="modal-body">
+          {AllSite
+            .filter(site => site.SiteCategory === SelectedCategory.Category)
+            .map((Element, idx) => (
+              <div className="Site col-2" key={idx}>
                 <a href={Element.SiteUrl}>
                   <img src={Element.SiteLogo} alt='...' />
                   {Element.SiteName}
                 </a>
-                <button className='btn rounded-circle' onClick={() => DeleteSite(Element._id)}><i className="fa-solid fa-trash fa-sm" /></button>
+                <button className="btn rounded-circle" onClick={() => DeleteSite(Element._id)}>
+                  <i className="fa-solid fa-trash fa-sm" />
+                </button>
               </div>
-            )
-          })
-        }
+            ))}
+        </div>
+        <div className="modal-footer">
+          <button type="button" onClick={CloseCategory} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+      <h3 className='mt-5'>All Sites</h3>
+      <div className='Bookmarks row'>
         {/* Monog DB - Backend  */}
         {
           AllSite.map((Element, idx) => {
@@ -403,11 +473,13 @@ export default function AdministratorPage() {
                   Site Category:
                   <select onChange={(event) => setSite({ ...Site, SiteCategory: event.target.value })}>
                     <option value="null"></option>
-                    <option value="General">General</option>
-                    <option value="MultiMedia">MultiMedia</option>
-                    <option value="Railway">Railway</option>
-                    <option value="Bank">Bank</option>
-                    <option value="Other">Other</option>
+                    {
+                      AllCategory.map((Element,idx) => {
+                        return (
+                          <option key={idx} value={Element.Category}>{Element.Category}</option>
+                        )
+                      })
+                    }
                   </select>
                 </label>
               </div>
@@ -463,6 +535,29 @@ export default function AdministratorPage() {
           </div>
         </div>
       </div>
+
+      <button className='btn btn-outline-dark' data-bs-toggle="modal" data-bs-target="#AddNewCategoryModal">Add New Category</button>
+
+
+                <div className="modal fade" id="AddNewCategoryModal" tabIndex="-1" aria-labelledby="AddNewCategoryModalLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <form onSubmit={AddNewCategory}>
+                                <div className="modal-header">
+                                    <h1 className="modal-title fs-5" id="AddNewCategoryModalLabel">Add New Category</h1>
+                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div className="modal-body">
+                                    <input type='text' placeholder='Category Name' value={Category.Category} onChange={(e) => setCategory({ ...Category, Category: e.target.value })} />
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" className="btn btn-primary">Add</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
     </div >
   )
